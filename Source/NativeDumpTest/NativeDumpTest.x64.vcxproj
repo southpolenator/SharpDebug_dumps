@@ -44,7 +44,8 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>"$(OutDir)..\..\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe" -a "$(TargetPath)" -d "$(OutDir)$(ProjectName).mdmp"</Command>
+      <Command>IF "%DUMPER%" == "" SET DUMPER=$(OutDir)..\..\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
+"%DUMPER%" -a "$(TargetPath)" -d "$(OutDir)$(ProjectName).mdmp"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>IF EXIST "$(OutDir)\$(ProjectName).mdmp" del /F /Q "$(OutDir)\$(ProjectName).mdmp"</Command>

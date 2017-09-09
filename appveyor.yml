@@ -12,6 +12,10 @@ build_script:
   - IF NOT "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( dotnet restore )
   - IF NOT "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( dotnet msbuild )
   - IF NOT "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( cd ..\..\ )
+  - SET DUMPER=%project_root%\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
+  - IF NOT EXIST %DUMPER% ( SET DUMPER=%project_root%\bin\ExceptionDumper.exe )
+  - SET DUMPER32=%project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
+  - IF NOT EXIST %DUMPER32% ( SET DUMPER32=%project_root%\bin\ExceptionDumper32.exe )
   - msbuild Source\NativeDumpTest\NativeDumpTest.x64.vcxproj /p:Configuration=Debug;Platform=x64 /verbosity:minimal /nologo
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\NativeDumpTest\NativeDumpTest.x64.Release.vcxproj /p:Configuration=Release;Platform=x64 /verbosity:minimal /nologo )
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\NativeDumpTest\NativeDumpTest.x86.vcxproj /p:Configuration=Debug;Platform=Win32 /verbosity:minimal /nologo )
@@ -21,11 +25,11 @@ build_script:
   - SET ORIGINAL_PATH=%PATH%
   - SET PATH=%gccpath%;%ORIGINAL_PATH%
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.exe -std=c++11 -g )
-  - IF EXIST %gccpath% ( %project_root%\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.mdmp )
+  - IF EXIST %gccpath% ( %DUMPER% -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.mdmp )
   - SET gccpath=C:\mingw-w64\i686-6.3.0-posix-dwarf-rt_v5-rev1\mingw32\bin
   - SET PATH=%gccpath%;%ORIGINAL_PATH%
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
-  - IF EXIST %gccpath% ( %project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
+  - IF EXIST %gccpath% ( %DUMPER32% -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
 
 artifacts:
   - path: '**\bin\*.exe'

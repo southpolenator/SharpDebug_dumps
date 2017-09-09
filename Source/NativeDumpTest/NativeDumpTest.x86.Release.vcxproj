@@ -48,7 +48,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>"$(OutDir)..\..\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe" -a "$(TargetPath)" -d "$(OutDir)$(ProjectName).mdmp"</Command>
+      <Command>IF "%DUMPER%" == "" SET DUMPER32=$(OutDir)..\..\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
+"%DUMPER32%" -a "$(TargetPath)" -d "$(OutDir)$(ProjectName).mdmp"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>IF EXIST "$(OutDir)\$(ProjectName).mdmp" del /F /Q "$(OutDir)\$(ProjectName).mdmp"</Command>

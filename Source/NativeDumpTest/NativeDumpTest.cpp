@@ -8,7 +8,6 @@
 #include <memory>
 #include <map>
 #include <unordered_map>
-#include <chrono>
 #include <thread>
 
 #include <stdlib.h>
@@ -18,6 +17,7 @@
   #include <Windows.h>
   #define NO_INLINE __declspec(noinline)
 #else
+  #include <chrono>
   #define NO_INLINE
 #endif
 

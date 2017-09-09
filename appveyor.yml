@@ -17,19 +17,16 @@ build_script:
   - msbuild Source\NativeDumpTest\NativeDumpTest.x86.Release.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo
   - SET gccpath=C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin
   - SET project_root=C:\projects\windbgcs-dumps
-  - SET PATH=%gccpath%;%PATH%
+  - SET ORIGINAL_PATH=%PATH%
+  - SET PATH=%gccpath%;%ORIGINAL_PATH%
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.exe -std=c++11 -g )
-#  - IF EXIST %gccpath% ( copy %gccpath%\libgcc_s_seh-1.dll %project_root%\Source\NativeDumpTest\bin\ )
-#  - IF EXIST %gccpath% ( copy %gccpath%\libstdc++-6.dll %project_root%\Source\NativeDumpTest\bin\ )
   - IF EXIST %gccpath% ( %project_root%\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.mdmp )
-#  - IF EXIST %gccpath% ( del %project_root%\Source\NativeDumpTest\bin\libgcc_s_seh-1.dll )
-#  - IF EXIST %gccpath% ( del %project_root%\Source\NativeDumpTest\bin\libstdc++-6.dll )
-#  - IF EXIST %gccpath% ( %gccpath%\g++ -m32 %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
-#  - IF EXIST %gccpath% ( copy %gccpath%\libgcc_s_seh-1.dll %project_root%\Source\NativeDumpTest\bin\ )
-#  - IF EXIST %gccpath% ( copy %gccpath%\libstdc++-6.dll %project_root%\Source\NativeDumpTest\bin\ )
-#  - IF EXIST %gccpath% ( %project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
-#  - IF EXIST %gccpath% ( del %project_root%\Source\NativeDumpTest\bin\libgcc_s_seh-1.dll )
-#  - IF EXIST %gccpath% ( del %project_root%\Source\NativeDumpTest\bin\libstdc++-6.dll )
+  - SET gccpath=C:\mingw-w64\i686-6.3.0-posix-dwarf-rt_v5-rev1\mingw32\bin
+  - SET PATH=%gccpath%;%ORIGINAL_PATH%
+  - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
+  - IF EXIST %gccpath% ( %project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
 
 artifacts:
+  - path: '**\*.*exe'
+  - path: '**\*.*pdb'
   - path: '**\*.*dmp'

@@ -17,14 +17,12 @@ build_script:
   - msbuild Source\NativeDumpTest\NativeDumpTest.x86.Release.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo
   - SET gccpath=C:\MinGW\bin
   - SET project_root=C:\projects\windbgcs-dumps
-  - IF EXIST %gccpath% (
-      %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g &
-      xcopy /D /Y %gccpath%\libgcc_s_dw2-1.dll %project_root%\Source\NativeDumpTest\bin\ &
-      xcopy /D /Y %gccpath%\libstdc++-6.dll %project_root%\Source\NativeDumpTest\bin\ &
-      %project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp &
-      del %project_root%\Source\NativeDumpTest\bin\libgcc_s_dw2-1.dll" &
-      del %project_root%\Source\NativeDumpTest\bin\libstdc++-6.dll"
-    )
+  - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
+  - IF EXIST %gccpath% ( xcopy /D /Y %gccpath%\libgcc_s_dw2-1.dll %project_root%\Source\NativeDumpTest\bin\ )
+  - IF EXIST %gccpath% ( xcopy /D /Y %gccpath%\libstdc++-6.dll %project_root%\Source\NativeDumpTest\bin\ )
+  - IF EXIST %gccpath% ( %project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
+  - IF EXIST %gccpath% ( del %project_root%\Source\NativeDumpTest\bin\libgcc_s_dw2-1.dll" )
+  - IF EXIST %gccpath% ( del %project_root%\Source\NativeDumpTest\bin\libstdc++-6.dll" )
 
 artifacts:
   - path: '**\*.*dmp'

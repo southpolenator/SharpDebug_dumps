@@ -20,7 +20,7 @@ build_script:
       %gccpath%\g++ Source\NativeDumpTest\NativeDumpTest.cpp -o Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g &
       xcopy /D /Y %gccpath%\libgcc_s_dw2-1.dll Source\NativeDumpTest\bin\ &
       xcopy /D /Y %gccpath%\libstdc++-6.dll Source\NativeDumpTest\bin\ &
-      Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp &
+      Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a C:\projects\windbgcs-dumps\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d C:\projects\windbgcs-dumps\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp &
       del Source\NativeDumpTest\bin\libgcc_s_dw2-1.dll" &
       del Source\NativeDumpTest\bin\libstdc++-6.dll"
     )

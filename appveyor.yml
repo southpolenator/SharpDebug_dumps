@@ -27,6 +27,6 @@ build_script:
   - IF EXIST %gccpath% ( %project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
 
 artifacts:
-  - path: '**\*.*exe'
-  - path: '**\*.*pdb'
-  - path: '**\*.*dmp'
+  - path: '**\bin\*.exe'
+  - path: '**\bin\*.pdb'
+  - path: '**\bin\*.*dmp'

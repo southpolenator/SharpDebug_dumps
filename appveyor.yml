@@ -17,7 +17,7 @@ build_script:
   - msbuild Source\NativeDumpTest\NativeDumpTest.x86.Release.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo
   - SET gccpath=C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\bin
   - SET project_root=C:\projects\windbgcs-dumps
-  - IF EXIST %gccpath% ( SET PATH=%gccpath%;%PATH% )
+  - SET PATH=%gccpath%;%PATH%
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.exe -std=c++11 -g )
   - IF EXIST %gccpath% ( copy %gccpath%\libgcc_s_seh-1.dll %project_root%\Source\NativeDumpTest\bin\ )
   - IF EXIST %gccpath% ( copy %gccpath%\libstdc++-6.dll %project_root%\Source\NativeDumpTest\bin\ )

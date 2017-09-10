@@ -10,6 +10,7 @@ matrix:
             - gcc-6
             - g++-6
             - gcc-multilib
+            - lib32gcc
             - clang
       script:
         - mkdir Source/NativeDumpTest/bin

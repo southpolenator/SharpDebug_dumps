@@ -12,6 +12,7 @@ matrix:
             - gcc-multilib
             - g++-multilib
             - clang
+            - gdb
       script:
         - mkdir Source/NativeDumpTest/bin
         - g++ Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -std=c++11 -g

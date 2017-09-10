@@ -1,0 +1,17 @@
+{
+    "package": {
+        "name": "NativeDumpTest",
+        "repo": "WinDbgCs_dumps",
+        "subject": "southpolenator",
+    },
+
+    "version": {
+        "name": "2.0",
+    },
+
+    "files":
+        [
+        {"includePattern": "Source/NativeDumpTest/bin/(.*)", "excludePattern": ".*/do-not-deploy/.*", "uploadPattern": "$2"},
+        ],
+    "publish": true
+}

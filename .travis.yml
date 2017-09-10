@@ -21,3 +21,9 @@ matrix:
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.coredump' -ex 'quit'
+      deploy:
+        provider: bintray
+        file: bintray.descriptor.json
+        user: southpolenator
+        key:
+          secure: nKktlFl8KE10A2xdM6e9j3zDZyyTfgK3UTQqtXyB6+laNO9+LjqulaB7lgzVaVdb04Y4cHQGMgKZ7Y9sAfsC9pP4wkls307Is7gEKzMhv0xHfXYnJ6iAYQ4JHpsu75oBsuKc43g6H1mn0OtsmhWkhtbnJGKNnQsG3kCRYo8NObUljWODtWVkpgK0h2dlrc/JyGzLzbTcAtrLIDGMozgwF94iGYZgnNZD999GRNdRbPST25ZuJMwvuCNPt+qDAB8GQFjrqRA2avBkWOia4N70MQREaJPxGWa7P58c+ES+OkJ7XKIBvuxP0K/T0awxTcYxOB1S0MOH2P41B/SvoW7X6hrVo0CQseOSU8okxNXE4+OAce65RiA57qfAqWPDCVHKUmRrqDOgt0SQx4/Zf0eAX956Ude0XmlL6UPIHGZE/xY71Y0eeimkjYocw/gNhJiygiEoPOfAvIyUtwN2GnU78iHB/f986vKDpWIWKBh2HUafKARYi3C1qTC6VQ0LEmBVnE9KzoJbUDBytWlO9LClzsWWoNUwdUn4TDoS1kjp+s7+3bVX0OzEEhgC361Xomo3scFaIGVB+lbuMO8CYODPQndpwd1QfCCBe+7bkKlwYAV39OoKrUB1nTZfIPUFBZJIvML6MPXiQ1VYJUR3l7qf22puWHQqx16qNT+5hnMa2+E=

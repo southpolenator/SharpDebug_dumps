@@ -17,3 +17,4 @@ matrix:
         - g++ Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -std=c++11 -g
         - g++ -m32 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc -std=c++11 -g
         - clang++ Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang -std=c++11 -g -D_GLIBCXX_DEBUG
+        - gdb Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.coredump'

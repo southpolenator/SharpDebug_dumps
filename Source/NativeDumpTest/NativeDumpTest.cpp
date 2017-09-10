@@ -11,10 +11,19 @@
 
 #include <stdlib.h>
 
-
 #ifdef _WIN32
   #include <Windows.h>
   #define NO_INLINE __declspec(noinline)
+  #if _MSC_VER < 1900
+    #define int8_t __int8
+    #define int16_t __int16
+    #define int32_t __int32
+    #define int64_t __int64
+    #define uint8_t unsigned __int8
+    #define uint16_t unsigned __int16
+    #define uint32_t unsigned __int32
+    #define uint64_t unsigned __int64
+  #endif
 #else
   #include <chrono>
   #include <thread>

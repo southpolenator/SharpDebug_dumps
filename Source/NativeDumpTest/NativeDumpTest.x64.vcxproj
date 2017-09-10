@@ -45,7 +45,6 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalOptions>/DEBUG:FULL %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>IF "%DUMPER%" == "" SET DUMPER=$(OutDir)..\..\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
@@ -57,6 +56,16 @@
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
     </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(VisualStudioVersion)'=='15.0'">
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(VisualStudioVersion)'=='12.0'">
+    <Link>
+      <AdditionalOptions>/DEBUG %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="NativeDumpTest.cpp" />

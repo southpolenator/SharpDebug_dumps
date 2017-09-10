@@ -45,6 +45,7 @@ deploy:
       secure: ppEFGKPnh2vKBMCVFei2oBVFZ7m3pKtSP41wWFuwyNZ3AkuYgV2rTiZY07kwnifO
     subject: southpolenator
     repo: WinDbgCs_dumps
+    version: 2.0
     package: NativeDumpTest
     publish: true
     override: true

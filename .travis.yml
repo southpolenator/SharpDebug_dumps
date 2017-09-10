@@ -1,0 +1,13 @@
+matrix:
+  include:
+    - os: linux
+      language: cpp
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6.3
+            - g++-6.3
+      script:
+        echo "hahaha"

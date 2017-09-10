@@ -28,4 +28,4 @@ matrix:
         - echo $MY_TEST2
         - echo $TRAVIS_BUILD_NUMBER
         - curl -T Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.coredump -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest/2.0/NativeDumpTest.linux.x64.gcc.coredump
-        - for file in Source/NativeDumpTest/bin/*; do echo $file; done
+        - for file in Source/NativeDumpTest/bin/*; do echo $file; name=$(basename $file); echo $name; done

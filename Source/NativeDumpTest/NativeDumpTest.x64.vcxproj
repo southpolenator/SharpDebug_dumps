@@ -62,6 +62,11 @@
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(VisualStudioVersion)'=='12.0'">
+    <Link>
+      <DebugType>Full</DebugType>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="NativeDumpTest.cpp" />
   </ItemGroup>

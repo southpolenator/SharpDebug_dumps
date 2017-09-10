@@ -1,12 +1,12 @@
+env:
+  global:
+    - secure: JnADJkNc3xePiRyNYz2n84Osf/ThWvOILOap2sgtC+387iTSQKXgobkpEYSK9YQqLRxmRN2fkZQ3JA4d/k3z7p6WqHPGZTcBnPdIPLvr6L3IMS7W4+FRzD3bT/zNIcyQ371H3Chtd26QCqIrDsVdfSGdqV5G1Y/Vv0MJd2kNF1EFqmwjEJWs/6q96lwvMuiPFBdoqt4yZf1tb5zEm+9zVCpXc2J41+CYLr2UpXz+3zjLOuhUaZjcKfe4t/poDwaqm6w1PwvYp9jSG84VY48zJZLR1AwgZLuNT43t3FlJKnnsqijJpg7nsxsoGVDq9OrODSkCLuVNY984aiEYnb/Q8Pi6RHeFpQaWdnO+OZz9vLfda/Wj1/+rPV2DLrOStCn7+9Lmjczs5kKR4vn70xTi81e1MaXQ7mprqwigjt5Ns9eAgwiuCnCf/KuieEa7U55k0GXr9Uzr+C0e0rlvHGi+Km+Y4CJ2LN/mGEa2hoWUwzmVFPNHDtrof/a0KqgcP3dwHG/bLc3mmgKjaqfQQgQs1JFktg4+InGIFmk8EyC9KC2bNLJSgdEvKYP9pOfjWAw8qqNtgFL81bQ1s2REsuWJuDZKNRLx3KrJlecrVxf5Fh54R9SDp39AcfWtjpdMfwz7V5uTqcUzBU+oOwOYW76je20H26C3OCcnsRugWoQgGJc=
+    - secure: QymJqqBFmuv1lH9PsV0Z0ieBHKzmtAy5D/c/bpmI7EgJC4bMMu9pjSOcoa1WHltLntQABiku5rQptX9K4lSEypdIbtftgb10NySAqYlkhJDTRinUhC3qtL849zyPeoEXjRtlz8FQPG+pC7cwYOsRPgsojM3n1i/Iw3FVByf/HUSnrC2mRFQ5DKr6gDgzYQyn6ZTcwYManUI8kUXT17xuhEM9n6aco/AFkam7NpGX2+Yu5id3Z9dI4FBpSoo26jIBHHw5DoWO1Xg+Oz7E3ZEsITvvZ44tEBEaZlHxEz84Zxfx0Fu3Hb5sEC/bgkKcvfNVmP5RWOW/bh5ItIwXdJZMSHtzFnkwWYAcjgiLbpCitAJnb9GUK3abD1znXwM3G0lutW3IeRJH7kI2UshGGlfZk1zFEJk0bCJCAYjoK4o1KhpVL40RORKFuoFDhCv1/Ejz8Lk9NtnOxOeQ01z7OswyVnuOa9vCEYsv1Qw5isVbfqk5Hpzh//Ndf3/JCsZfBLaU1K+cCX/P8xtbiyrao7mLg8PsCqC9il/k5rykJNl1CFsKi3wcE+ZzLJPgZFjpYaO/daFYawoWa6jcAs0Xwfq1nRqhXuGxrHb9SV3seLwOcxgKbb3ZuSosX2hiJViSldtA3r7kp70c7PP0j5my4Y1PE7CEQbh1L38zFypYMl0Mwi4=
+    - MY_TEST2: qwerty
 matrix:
   include:
     - os: linux
       language: cpp
-      env:
-        globals:
-          - secure: JnADJkNc3xePiRyNYz2n84Osf/ThWvOILOap2sgtC+387iTSQKXgobkpEYSK9YQqLRxmRN2fkZQ3JA4d/k3z7p6WqHPGZTcBnPdIPLvr6L3IMS7W4+FRzD3bT/zNIcyQ371H3Chtd26QCqIrDsVdfSGdqV5G1Y/Vv0MJd2kNF1EFqmwjEJWs/6q96lwvMuiPFBdoqt4yZf1tb5zEm+9zVCpXc2J41+CYLr2UpXz+3zjLOuhUaZjcKfe4t/poDwaqm6w1PwvYp9jSG84VY48zJZLR1AwgZLuNT43t3FlJKnnsqijJpg7nsxsoGVDq9OrODSkCLuVNY984aiEYnb/Q8Pi6RHeFpQaWdnO+OZz9vLfda/Wj1/+rPV2DLrOStCn7+9Lmjczs5kKR4vn70xTi81e1MaXQ7mprqwigjt5Ns9eAgwiuCnCf/KuieEa7U55k0GXr9Uzr+C0e0rlvHGi+Km+Y4CJ2LN/mGEa2hoWUwzmVFPNHDtrof/a0KqgcP3dwHG/bLc3mmgKjaqfQQgQs1JFktg4+InGIFmk8EyC9KC2bNLJSgdEvKYP9pOfjWAw8qqNtgFL81bQ1s2REsuWJuDZKNRLx3KrJlecrVxf5Fh54R9SDp39AcfWtjpdMfwz7V5uTqcUzBU+oOwOYW76je20H26C3OCcnsRugWoQgGJc=
-          - secure: QymJqqBFmuv1lH9PsV0Z0ieBHKzmtAy5D/c/bpmI7EgJC4bMMu9pjSOcoa1WHltLntQABiku5rQptX9K4lSEypdIbtftgb10NySAqYlkhJDTRinUhC3qtL849zyPeoEXjRtlz8FQPG+pC7cwYOsRPgsojM3n1i/Iw3FVByf/HUSnrC2mRFQ5DKr6gDgzYQyn6ZTcwYManUI8kUXT17xuhEM9n6aco/AFkam7NpGX2+Yu5id3Z9dI4FBpSoo26jIBHHw5DoWO1Xg+Oz7E3ZEsITvvZ44tEBEaZlHxEz84Zxfx0Fu3Hb5sEC/bgkKcvfNVmP5RWOW/bh5ItIwXdJZMSHtzFnkwWYAcjgiLbpCitAJnb9GUK3abD1znXwM3G0lutW3IeRJH7kI2UshGGlfZk1zFEJk0bCJCAYjoK4o1KhpVL40RORKFuoFDhCv1/Ejz8Lk9NtnOxOeQ01z7OswyVnuOa9vCEYsv1Qw5isVbfqk5Hpzh//Ndf3/JCsZfBLaU1K+cCX/P8xtbiyrao7mLg8PsCqC9il/k5rykJNl1CFsKi3wcE+ZzLJPgZFjpYaO/daFYawoWa6jcAs0Xwfq1nRqhXuGxrHb9SV3seLwOcxgKbb3ZuSosX2hiJViSldtA3r7kp70c7PP0j5my4Y1PE7CEQbh1L38zFypYMl0Mwi4=
-          - MY_TEST2: qwerty
       addons:
         apt:
           sources:
@@ -28,4 +28,5 @@ matrix:
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.coredump' -ex 'quit'
         - echo $MY_TEST
         - echo $MY_TEST2
+        - echo $TRAVIS_BUILD_NUMBER
         - curl -T Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.coredump -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest/2.0/NativeDumpTest.linux.x64.gcc.coredump

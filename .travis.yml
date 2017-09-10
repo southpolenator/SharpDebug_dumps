@@ -10,7 +10,7 @@ matrix:
             - gcc-6
             - g++-6
             - gcc-multilib
-            - llvm-toolchain-4.0
+            - clang
       script:
         - mkdir Source/NativeDumpTest/bin
         - g++ Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -std=c++11 -g

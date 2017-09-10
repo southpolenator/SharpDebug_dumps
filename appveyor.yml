@@ -33,23 +33,19 @@ build_script:
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
   - IF EXIST %gccpath% ( %DUMPER32% -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
 
-on_success:
-  - git config --global credential.helper store
-  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://9c9bd7ac46f0c96c4d7651a7765c173736a2f1d0:x-oauth-basic@github.com`n"
-  - git config --global user.email "autopr@github.com"
-  - git config --global user.name "autopr"
-  - git checkout master
-  - xcopy /Y Source\NativeDumpTest\bin\*.exe .\
-  - xcopy /Y Source\NativeDumpTest\bin\*.pdb .\
-  - xcopy /Y Source\NativeDumpTest\bin\*.*dmp .\
-  - git add .
-  - git commit -m "Updating dumps"
-  - git push
-  #- git remote add origin-autopr https://${9c9bd7ac46f0c96c4d7651a7765c173736a2f1d0}@github.com/southpolenator/WinDbgCs_dumps.git
-  #- git push --quiet --set-upstream origin-autopr %BRANCH%
-  #- git pull-request
-
 artifacts:
   - path: '**\bin\*.exe'
   - path: '**\bin\*.pdb'
   - path: '**\bin\*.*dmp'
+
+deploy:
+  - provider: BinTray
+    username: southpolenator
+    api_key:
+      secure: ppEFGKPnh2vKBMCVFei2oBVFZ7m3pKtSP41wWFuwyNZ3AkuYgV2rTiZY07kwnifO
+    subject: AppVeyor upload
+    repo: WinDbgCs_dumps
+    package: NativeDumpTest
+    publish: true
+    override: true
+    explode: true

@@ -32,13 +32,13 @@ build_script:
   - SET PATH=%gccpath%;%ORIGINAL_PATH%
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
   - IF EXIST %gccpath% ( %DUMPER32% -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
-  - SET BRANCH=Appeyor/%APPVEYOR_BUILD_ID%
-  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( SET BRANCH=VS2013.%BRANCH% )
-  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" ( SET BRANCH=VS2015.%BRANCH% )
-  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( SET BRANCH=VS2017.%BRANCH% )
+  #- SET BRANCH=Appeyor/%APPVEYOR_BUILD_ID%
+  #- IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( SET BRANCH=VS2013.%BRANCH% )
+  #- IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" ( SET BRANCH=VS2015.%BRANCH% )
+  #- IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( SET BRANCH=VS2017.%BRANCH% )
   - git config --global user.email "autopr@github.com"
   - git config --global user.name "autopr"
-  - git checkout -b %BRANCH%
+  #- git checkout -b %BRANCH%
   - xcopy /Y Source\NativeDumpTest\bin\*.exe .\
   - xcopy /Y Source\NativeDumpTest\bin\*.pdb .\
   - xcopy /Y Source\NativeDumpTest\bin\*.*dmp .\
@@ -46,7 +46,7 @@ build_script:
   - git commit -m "Updating dumps"
   - git remote add origin-autopr https://${9c9bd7ac46f0c96c4d7651a7765c173736a2f1d0}@github.com/southpolenator/WinDbgCs_dumps.git
   - git push --quiet --set-upstream origin-autopr %BRANCH%
-  - git pull-request
+  #- git pull-request
 
 artifacts:
   - path: '**\bin\*.exe'

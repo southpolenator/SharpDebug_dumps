@@ -12,6 +12,7 @@ build_script:
   - IF NOT "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( dotnet restore )
   - IF NOT "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( dotnet msbuild )
   - IF NOT "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( cd ..\..\ )
+  - SET project_root=C:\projects\windbgcs-dumps
   - SET DUMPER=%project_root%\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
   - IF NOT EXIST %DUMPER% ( SET DUMPER=%project_root%\bin\ExceptionDumper.exe )
   - ECHO %DUMPER%
@@ -23,7 +24,6 @@ build_script:
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\NativeDumpTest\NativeDumpTest.x86.vcxproj /p:Configuration=Debug;Platform=Win32 /verbosity:minimal /nologo )
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\NativeDumpTest\NativeDumpTest.x86.Release.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo )
   - SET gccpath=C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1\mingw64\bin
-  - SET project_root=C:\projects\windbgcs-dumps
   - SET ORIGINAL_PATH=%PATH%
   - SET PATH=%gccpath%;%ORIGINAL_PATH%
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.x64.gcc.exe -std=c++11 -g )

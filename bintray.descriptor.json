@@ -11,7 +11,7 @@
 
     "files":
         [
-        {"includePattern": "Source/NativeDumpTest/bin/(.*)", "excludePattern": ".*/do-not-deploy/.*", "uploadPattern": "$2"},
+        {"includePattern": "Source/NativeDumpTest/bin/(.*)", "excludePattern": ".*/do-not-deploy/.*", "uploadPattern": "$2"}
         ],
     "publish": true
 }

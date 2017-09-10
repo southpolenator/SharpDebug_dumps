@@ -14,8 +14,10 @@ build_script:
   - IF NOT "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( cd ..\..\ )
   - SET DUMPER=%project_root%\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
   - IF NOT EXIST %DUMPER% ( SET DUMPER=%project_root%\bin\ExceptionDumper.exe )
+  - ECHO %DUMPER%
   - SET DUMPER32=%project_root%\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
   - IF NOT EXIST %DUMPER32% ( SET DUMPER32=%project_root%\bin\ExceptionDumper32.exe )
+  - ECHO %DUMPER32%
   - msbuild Source\NativeDumpTest\NativeDumpTest.x64.vcxproj /p:Configuration=Debug;Platform=x64 /verbosity:minimal /nologo
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\NativeDumpTest\NativeDumpTest.x64.Release.vcxproj /p:Configuration=Release;Platform=x64 /verbosity:minimal /nologo )
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\NativeDumpTest\NativeDumpTest.x86.vcxproj /p:Configuration=Debug;Platform=Win32 /verbosity:minimal /nologo )

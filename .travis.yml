@@ -1,7 +1,7 @@
 matrix:
   include:
     - os: linux
-      language: csharp
+      language: cpp
       addons:
         apt:
           sources:
@@ -10,6 +10,7 @@ matrix:
             - gcc-6
             - g++-6
             - gcc-multilib
+            - g++-multilib
             - clang
       script:
         - mkdir Source/NativeDumpTest/bin

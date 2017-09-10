@@ -36,16 +36,16 @@ build_script:
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( SET BRANCH=VS2013.%BRANCH% )
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" ( SET BRANCH=VS2015.%BRANCH% )
   - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( SET BRANCH=VS2017.%BRANCH% )
-  - git remote set-url origin https://${9c9bd7ac46f0c96c4d7651a7765c173736a2f1d0}@github.com/southpolenator/WinDbgCs_dumps.git
+  - git config --global user.email "autopr@github.com"
+  - git config --global user.name "autopr"
   - git checkout -b %BRANCH%
   - xcopy /Y Source\NativeDumpTest\bin\*.exe .\
   - xcopy /Y Source\NativeDumpTest\bin\*.pdb .\
   - xcopy /Y Source\NativeDumpTest\bin\*.*dmp .\
   - git add .
-  - git config --global user.email "autopr@github.com"
-  - git config --global user.name "autopr"
   - git commit -m "Updating dumps"
-  - git push -u origin %BRANCH%
+  - git remote add origin-autopr https://${9c9bd7ac46f0c96c4d7651a7765c173736a2f1d0}@github.com/southpolenator/WinDbgCs_dumps.git
+  - git push --quiet --set-upstream origin-autopr %BRANCH%
   - git pull-request
 
 artifacts:

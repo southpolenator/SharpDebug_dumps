@@ -225,7 +225,14 @@ NO_INLINE int main(int argc, char** argv)
 
 struct DoubleTest
 {
+    DoubleTest()
+        : d(3.5)
+        , f(2.5)
+        , i(5)
+    {
+    }
+
     double d;
     float f;
     int i;
-} doubleTest{ 3.5, 2.5, 5 };
+} doubleTest;

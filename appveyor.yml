@@ -39,6 +39,7 @@ build_script:
   - git config --global user.email "autopr@github.com"
   - git config --global user.name "autopr"
   #- git checkout -b %BRANCH%
+  - git checkout master
   - xcopy /Y Source\NativeDumpTest\bin\*.exe .\
   - xcopy /Y Source\NativeDumpTest\bin\*.pdb .\
   - xcopy /Y Source\NativeDumpTest\bin\*.*dmp .\

@@ -43,7 +43,7 @@ deploy:
     username: southpolenator
     api_key:
       secure: ppEFGKPnh2vKBMCVFei2oBVFZ7m3pKtSP41wWFuwyNZ3AkuYgV2rTiZY07kwnifO
-    subject: AppVeyor upload
+    subject: southpolenator
     repo: WinDbgCs_dumps
     package: NativeDumpTest
     publish: true

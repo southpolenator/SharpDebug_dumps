@@ -39,6 +39,8 @@ build_script:
   - xcopy /Y Source\NativeDumpTest\bin\*.pdb .\
   - xcopy /Y Source\NativeDumpTest\bin\*.*dmp .\
   - git add .
+  - git config --global user.email "autopr@github.com"
+  - git config --global user.name "autopr"
   - git commit -m "Updating dumps"
   - git push
   - git pull-request

@@ -2,11 +2,11 @@
     "package": {
         "name": "NativeDumpTest",
         "repo": "WinDbgCs_dumps",
-        "subject": "southpolenator",
+        "subject": "southpolenator"
     },
 
     "version": {
-        "name": "2.0",
+        "name": "2.0"
     },
 
     "files":

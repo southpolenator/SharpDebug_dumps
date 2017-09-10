@@ -33,7 +33,7 @@ build_script:
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
   - IF EXIST %gccpath% ( %DUMPER32% -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
   - SET BRANCH=Appeyor/%APPVEYOR_BUILD_ID%
-  - git remote add origin https://${9c9bd7ac46f0c96c4d7651a7765c173736a2f1d0}@github.com/southpolenator/WinDbgCs_dumps.git
+  - git remote set-url origin https://${9c9bd7ac46f0c96c4d7651a7765c173736a2f1d0}@github.com/southpolenator/WinDbgCs_dumps.git
   - git checkout -b %BRANCH%
   - xcopy /Y Source\NativeDumpTest\bin\*.exe .\
   - xcopy /Y Source\NativeDumpTest\bin\*.pdb .\

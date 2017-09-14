@@ -4,22 +4,26 @@ env:
 matrix:
   include:
     - os: linux
+      dist: trusty
       language: cpp
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-4.0
           packages:
-            - gcc-6
-            - g++-6
+            - gcc-6.3
+            - g++-6.3
             - gcc-multilib
             - g++-multilib
-            - gcc-6-multilib
-            - g++-6-multilib
-            - clang
+            - gcc-6.3-multilib
+            - g++-6.3-multilib
+            - clang-4.0
             - gdb
             - libc++-dev
       script:
+        - g++-6 -v
+        - clang++ -v
         - mkdir Source/NativeDumpTest/bin
         - g++-6 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -std=c++11 -g
         - g++-6 -m32 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc -std=c++11 -g

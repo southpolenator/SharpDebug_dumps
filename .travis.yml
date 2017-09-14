@@ -12,12 +12,12 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-4.0
           packages:
-            - gcc-6.3
-            - g++-6.3
+            - gcc-6
+            - g++-6
             - gcc-multilib
             - g++-multilib
-            - gcc-6.3-multilib
-            - g++-6.3-multilib
+            - gcc-6-multilib
+            - g++-6-multilib
             - clang-4.0
             - gdb
             - libc++-dev

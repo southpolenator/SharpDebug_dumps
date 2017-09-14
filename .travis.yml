@@ -31,7 +31,4 @@ matrix:
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.coredump' -ex 'quit'
-        - echo $MY_TEST
-        - echo $MY_TEST2
-        - echo $TRAVIS_BUILD_NUMBER
         - for file in Source/NativeDumpTest/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest/2.0/$name?override=1; done

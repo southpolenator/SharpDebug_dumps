@@ -187,7 +187,6 @@ NO_INLINE void DefaultTestCase()
 
     TestArray();
 }
-#pragma optimize("", on)
 
 NO_INLINE void InfiniteRecursionTestCase(int arg)
 {
@@ -208,6 +207,9 @@ NO_INLINE int main(int argc, char** argv)
         testCaseToRun = atoi(argv[1]);
     }
 
+    printf("%d\n", argc);
+    printf("%s\n", argv[0]);
+    printf("%d\n", MyTestClass::staticVariable);
     switch (testCaseToRun)
     {
     case 0 :
@@ -222,6 +224,7 @@ NO_INLINE int main(int argc, char** argv)
 
     return 0;
 }
+#pragma optimize("", on)
 
 struct DoubleTest
 {

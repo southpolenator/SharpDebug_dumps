@@ -12,8 +12,8 @@ matrix:
           packages:
             - gcc-6
             - g++-6
-            - gcc-multilib
-            - g++-multilib
+            - gcc-6-multilib
+            - g++-6-multilib
             - clang
             - gdb
             - libc++-dev

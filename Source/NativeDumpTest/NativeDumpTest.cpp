@@ -239,3 +239,118 @@ struct DoubleTest
     float f;
     int i;
 } doubleTest;
+
+
+struct SimpleMultiClassInheritanceA
+{
+    SimpleMultiClassInheritanceA()
+        : a(42)
+    {
+    }
+
+    char a;
+};
+
+struct SimpleMultiClassInheritanceB
+{
+    SimpleMultiClassInheritanceB()
+        : b(42)
+    {
+    }
+
+    double b;
+};
+
+struct SimpleMultiClassInheritanceC : public SimpleMultiClassInheritanceA, public SimpleMultiClassInheritanceB
+{
+    SimpleMultiClassInheritanceC()
+        : c(42)
+    {
+    }
+
+    float c;
+} simpleMultiClassInheritanceTest;
+
+
+struct MultiClassInheritanceA
+{
+    MultiClassInheritanceA()
+        : a(42)
+    {
+    }
+
+    virtual int GetA() const = 0;
+
+    int a;
+};
+
+struct MultiClassInheritanceB
+{
+    MultiClassInheritanceB()
+        : b(42)
+    {
+    }
+
+    virtual int GetB() const
+    {
+        return b;
+    }
+
+    int b;
+};
+
+struct MultiClassInheritanceC : public MultiClassInheritanceA, public MultiClassInheritanceB
+{
+    MultiClassInheritanceC()
+        : c(42)
+    {
+    }
+
+    virtual int GetA() const override
+    {
+        return a;
+    }
+
+    int c;
+} multiClassInheritanceTest;
+
+
+struct VirtualMultiClassInheritanceA
+{
+    VirtualMultiClassInheritanceA()
+        : a(42)
+    {
+    }
+
+    char a;
+};
+
+struct VirtualMultiClassInheritanceB : public virtual VirtualMultiClassInheritanceA
+{
+    VirtualMultiClassInheritanceB()
+        : b(42)
+    {
+    }
+
+    double b;
+};
+
+struct VirtualMultiClassInheritanceC : public virtual VirtualMultiClassInheritanceA
+{
+    VirtualMultiClassInheritanceC()
+        : c(42)
+    {
+    }
+
+    float c;
+} VirtualMultiClassInheritanceTest;
+
+struct VirtualMultiClassInheritanceD : public VirtualMultiClassInheritanceB, public VirtualMultiClassInheritanceC
+{
+    VirtualMultiClassInheritanceD()
+        : d(42)
+    {
+    }
+
+    int d;
+} virtualMultiClassInheritanceTest;

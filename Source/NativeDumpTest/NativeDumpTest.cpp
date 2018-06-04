@@ -356,15 +356,14 @@ struct VirtualMultiClassInheritanceD : public VirtualMultiClassInheritanceB, pub
 } virtualMultiClassInheritanceTest;
 
 struct VirtualMultiClassInheritanceE
-    : public VirtualMultiClassInheritanceD
-    , public VirtualMultiClassInheritanceB
+    : public virtual VirtualMultiClassInheritanceA
     , public VirtualMultiClassInheritanceC
-    , public virtual VirtualMultiClassInheritanceA
+    , public VirtualMultiClassInheritanceB
 {
     VirtualMultiClassInheritanceD()
-        : d(42)
+        : e(42)
     {
     }
 
-    int d;
+    int e;
 } virtualMultiClassInheritanceTest2;

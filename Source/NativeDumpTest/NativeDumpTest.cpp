@@ -360,7 +360,7 @@ struct VirtualMultiClassInheritanceE
     , public VirtualMultiClassInheritanceC
     , public VirtualMultiClassInheritanceB
 {
-    VirtualMultiClassInheritanceD()
+    VirtualMultiClassInheritanceE()
         : e(42)
     {
     }

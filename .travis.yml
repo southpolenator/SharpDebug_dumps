@@ -22,6 +22,7 @@ matrix:
             - gdb
             - libc++-dev
       script:
+        - sudo echo 0 | tee /proc/sys/kernel/randomize_va_space
         - g++-6 -v
         - clang++ -v
         - mkdir Source/NativeDumpTest/bin

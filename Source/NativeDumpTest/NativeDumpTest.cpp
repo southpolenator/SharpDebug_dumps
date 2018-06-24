@@ -63,6 +63,25 @@ struct BuiltinTypesTest
     float f32;
     double f64;
     long double f80;
+    
+    BuiltinTypesTest()
+        : b(false)
+        , c1(42)
+        , c2(42)
+        , i8(42)
+        , i16(42)
+        , i32(42)
+        , i64(42)
+        , u8(42)
+        , u16(42)
+        , u32(42)
+        , u64(42)
+        , f32(42)
+        , f64(42)
+        , f80(42)
+    {
+    }
+
 } builtinTypesTest;
 
 class MyTestClass

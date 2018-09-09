@@ -108,8 +108,8 @@
       <Command>IF EXIST "$(OutDir)$(TargetName).mdmp" del /F /Q "$(OutDir)$(TargetName).mdmp"</Command>
     </PreLinkEvent>
     <PostBuildEvent>
-      <Command>IF "%DUMPER%" == "" SET DUMPER=$(OutDir)..\..\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
-"%DUMPER%" -a "$(TargetPath)" -d "$(OutDir)$(TargetName).mdmp"</Command>
+      <Command>IF "%DUMPER32%" == "" SET DUMPER32=$(OutDir)..\..\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
+"%DUMPER32%" -a "$(TargetPath)" -d "$(OutDir)$(TargetName).mdmp"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,8 +156,8 @@
       <Command>IF EXIST "$(OutDir)$(TargetName).mdmp" del /F /Q "$(OutDir)$(TargetName).mdmp"</Command>
     </PreLinkEvent>
     <PostBuildEvent>
-      <Command>IF "%DUMPER%" == "" SET DUMPER=$(OutDir)..\..\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
-"%DUMPER%" -a "$(TargetPath)" -d "$(OutDir)$(TargetName).mdmp"</Command>
+      <Command>IF "%DUMPER32%" == "" SET DUMPER32=$(OutDir)..\..\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
+"%DUMPER32%" -a "$(TargetPath)" -d "$(OutDir)$(TargetName).mdmp"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

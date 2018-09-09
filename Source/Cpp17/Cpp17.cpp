@@ -3,6 +3,8 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <string.h>
+
 #ifdef _WIN32
   #define NO_INLINE __declspec(noinline)
 #else

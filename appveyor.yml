@@ -30,6 +30,10 @@ build_script:
   - SET PATH=%gccpath%;%ORIGINAL_PATH%
   - IF EXIST %gccpath% ( %gccpath%\g++ %project_root%\Source\NativeDumpTest\NativeDumpTest.cpp -o %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
   - IF EXIST %gccpath% ( %DUMPER32% -a %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %project_root%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
+  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Debug;Platform=x64 /verbosity:minimal /nologo )
+  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Release;Platform=x64 /verbosity:minimal /nologo )
+  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Debug;Platform=Win32 /verbosity:minimal /nologo )
+  - IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo )
 
 artifacts:
   - path: '**\bin\*.exe'

@@ -10,30 +10,30 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-4.0
+            - llvm-toolchain-trusty-6.0
           packages:
-            - gcc-6
-            - g++-6
+            - gcc-7
+            - g++-7
             - gcc-multilib
             - g++-multilib
-            - gcc-6-multilib
-            - g++-6-multilib
-            - clang-4.0
+            - gcc-7-multilib
+            - g++-7-multilib
+            - clang-6.0
             - gdb
             - libc++-dev
       script:
         - echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-        - g++-6 -v
+        - g++-7 -v
         - clang++ -v
         - mkdir Source/NativeDumpTest/bin
-        - g++-6 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -std=c++11 -g -static-libgcc -static-libstdc++
-        - g++-6 -m32 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc -std=c++11 -g -static-libgcc -static-libstdc++
+        - g++-7 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -std=c++11 -g -static-libgcc -static-libstdc++
+        - g++-7 -m32 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc -std=c++11 -g -static-libgcc -static-libstdc++
         - clang++ Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang -stdlib=libc++ -std=c++11 -g -static-libgcc -static-libstdc++ -pthread -fno-limit-debug-info
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.coredump' -ex 'quit'
-        - g++-6 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.nortti -std=c++11 -g -fno-rtti -static-libgcc -static-libstdc++
-        - g++-6 -m32 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti -std=c++11 -g -fno-rtti -static-libgcc -static-libstdc++
+        - g++-7 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.nortti -std=c++11 -g -fno-rtti -static-libgcc -static-libstdc++
+        - g++-7 -m32 Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti -std=c++11 -g -fno-rtti -static-libgcc -static-libstdc++
         - clang++ Source/NativeDumpTest/NativeDumpTest.cpp -o Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.nortti -stdlib=libc++ -std=c++11 -g -fno-rtti -static-libgcc -static-libstdc++ -pthread  -fno-limit-debug-info
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.nortti -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.gcc.nortti.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti.coredump' -ex 'quit'
@@ -41,9 +41,9 @@ matrix:
         - ls Source/NativeDumpTest/bin/ -la
         - for file in Source/NativeDumpTest/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest/2.0/$name?override=1; done
         - mkdir Source/Cpp17/bin
-        - g++-6 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x64.gcc -std=c++1z -g -static-libgcc -static-libstdc++
-        - g++-6 -m32 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x86.gcc -std=c++1z -g -static-libgcc -static-libstdc++
-        - clang++ Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x64.clang -stdlib=libc++ -std=c++1z -g -static-libgcc -static-libstdc++ -pthread -fno-limit-debug-info
+        - g++-7 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x64.gcc -std=c++17 -g -static-libgcc -static-libstdc++
+        - g++-7 -m32 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x86.gcc -std=c++17 -g -static-libgcc -static-libstdc++
+        - clang++ Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x64.clang -stdlib=libc++ -std=c++17 -g -static-libgcc -static-libstdc++ -pthread -fno-limit-debug-info
         - gdb --batch Source/Cpp17/bin/cpp17.linux.x64.gcc -ex 'r' -ex 'generate-core-file Source/Cpp17/bin/cpp17.linux.x64.gcc.coredump' -ex 'quit'
         - gdb --batch Source/Cpp17/bin/cpp17.linux.x86.gcc -ex 'r' -ex 'generate-core-file Source/Cpp17/bin/cpp17.linux.x86.gcc.coredump' -ex 'quit'
         - gdb --batch Source/Cpp17/bin/cpp17.linux.x64.clang -ex 'r' -ex 'generate-core-file Source/Cpp17/bin/cpp17.linux.x64.clang.coredump' -ex 'quit'

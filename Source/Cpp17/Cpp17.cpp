@@ -12,6 +12,7 @@
 #endif
 
 #include <any>
+#include <variant>
 #include <string>
 #include <vector>
 #include <list>
@@ -57,9 +58,18 @@ NO_INLINE void TestAny()
     CauseDump();
 }
 
+NO_INLINE void TestVariant()
+{
+    std::variant<int, float> if1 = 42, if2 = 42.0f;
+    std::variant<std::string, std::wstring> s1 = "ansiFoo", s2 = L"Foo";
+    std::variant<double, int, std::string> e;
+
+    TestAny();
+}
+
 NO_INLINE int main()
 {
-    TestAny();
+    TestVariant();
     return 0;
 }
 #pragma optimize("", on)

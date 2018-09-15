@@ -39,7 +39,7 @@ matrix:
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.nortti -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.nortti.coredump' -ex 'quit'
         - ls Source/NativeDumpTest/bin/ -la
-        - for file in Source/NativeDumpTest/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest.1/1.0/$name?override=1; done
+        - for file in Source/NativeDumpTest/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest.1/1.0/a1/$name?override=1; done
         - mkdir Source/Cpp17/bin
         - g++-7 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x64.gcc -std=c++17 -g -static-libgcc -static-libstdc++
         - g++-7 -m32 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x86.gcc -std=c++17 -g -static-libgcc -static-libstdc++
@@ -54,4 +54,4 @@ matrix:
         - gdb --batch Source/Cpp17/bin/cpp17.linux.x86.gcc.nortti -ex 'r' -ex 'generate-core-file Source/Cpp17/bin/cpp17.linux.x86.gcc.nortti.coredump' -ex 'quit'
         - gdb --batch Source/Cpp17/bin/cpp17.linux.x64.clang.nortti -ex 'r' -ex 'generate-core-file Source/Cpp17/bin/cpp17.linux.x64.clang.nortti.coredump' -ex 'quit'
         - ls Source/Cpp17/bin/ -la
-        - for file in Source/Cpp17/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest.1/1.0/$name?override=1; done
+        - for file in Source/Cpp17/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest.1/1.0/a1/$name?override=1; done

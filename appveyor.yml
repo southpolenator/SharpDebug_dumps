@@ -16,7 +16,7 @@ environment:
 
 build_script:
   - ps: |-
-        if ($env:APPVEYOR_BUILD_WORKER_IMAGE -eq "Visual Studio 2013") {
+        if (-not ($env:APPVEYOR_BUILD_WORKER_IMAGE -eq "Visual Studio 2013")) {
             cd Source\ExceptionDumper32
             dotnet.exe restore
             dotnet.exe msbuild
@@ -43,7 +43,9 @@ build_script:
   - cmd: IF EXIST %gccpath% ( %gccpath%\g++ %PROJECT_ROOT%\Source\NativeDumpTest\NativeDumpTest.cpp -o %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
   - cmd: IF EXIST %gccpath% ( %DUMPER32% -a %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
   - cmd: IF EXIST %gccpath% ( dir %PROJECT_ROOT%\Source\NativeDumpTest\bin\* )
-  - cmd: IF EXIST %gccpath% ( 7z a %PROJECT_ROOT%\NativeDumpTest.mingw.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*.mdmp )
+  - cmd: IF EXIST %gccpath% ( 7z a %PROJECT_ROOT%\NativeDumpTest.mingw.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*gcc*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*gcc*.mdmp )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( 7z a %PROJECT_ROOT%\NativeDumpTest.VS2013.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.mdmp )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" ( 7z a %PROJECT_ROOT%\NativeDumpTest.VS2015.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.mdmp )
   - ps: |-
         if ($env:APPVEYOR_BUILD_WORKER_IMAGE -eq "Visual Studio 2017") {
             msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Debug;Platform=x64 /verbosity:minimal /nologo
@@ -59,7 +61,17 @@ build_script:
         if (Test-Path NativeDumpTest.mingw.zip) {
             $filename = "NativeDumpTest.mingw.zip";
             $url = "https://sharpdebug.jfrog.io/sharpdebug/generic-local/${env:DUMPS_VERSION}/${filename}?override=1";
-            $webClient.UploadData($url, "PUT", [System.IO.File]::ReadAllBytes($filename));
+            $webClient.UploadData($url, "PUT", [System.IO.File]::ReadAllBytes("${env:PROJECT_ROOT}\$filename"));
+        }
+        if (Test-Path NativeDumpTest.VS2013.zip) {
+            $filename = "NativeDumpTest.VS2013.zip";
+            $url = "https://sharpdebug.jfrog.io/sharpdebug/generic-local/${env:DUMPS_VERSION}/${filename}?override=1";
+            $webClient.UploadData($url, "PUT", [System.IO.File]::ReadAllBytes("${env:PROJECT_ROOT}\$filename"));
+        }
+        if (Test-Path NativeDumpTest.VS2015.zip) {
+            $filename = "NativeDumpTest.VS2015.zip";
+            $url = "https://sharpdebug.jfrog.io/sharpdebug/generic-local/${env:DUMPS_VERSION}/${filename}?override=1";
+            $webClient.UploadData($url, "PUT", [System.IO.File]::ReadAllBytes("${env:PROJECT_ROOT}\$filename"));
         }
 
 artifacts:

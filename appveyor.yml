@@ -43,6 +43,7 @@ build_script:
   - cmd: IF EXIST %gccpath% ( 7z a %PROJECT_ROOT%\NativeDumpTest.mingw.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*gcc*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*gcc*.mdmp )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( 7z a %PROJECT_ROOT%\NativeDumpTest.VS2013.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.mdmp %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.pdb )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" ( 7z a %PROJECT_ROOT%\NativeDumpTest.VS2015.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.mdmp %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.pdb )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( 7z a %PROJECT_ROOT%\NativeDumpTest.VS2017.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*.mdmp %PROJECT_ROOT%\Source\NativeDumpTest\bin\*.pdb )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Debug;Platform=x64 /verbosity:minimal /nologo )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Release;Platform=x64 /verbosity:minimal /nologo )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Debug;Platform=Win32 /verbosity:minimal /nologo )

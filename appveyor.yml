@@ -39,7 +39,7 @@ build_script:
   - cmd: SET PATH=%gccpath%;%ORIGINAL_PATH%
   - cmd: IF EXIST %gccpath% ( %gccpath%\g++ %PROJECT_ROOT%\Source\NativeDumpTest\NativeDumpTest.cpp -o %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
   - cmd: IF EXIST %gccpath% ( %DUMPER32% -a %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
-  - cmd: IF EXIST %gccpath% ( dir %PROJECT_ROOT%\Source\NativeDumpTest\bin\* )
+  - cmd: dir %PROJECT_ROOT%\Source\NativeDumpTest\bin\*
   - cmd: IF EXIST %gccpath% ( 7z a %PROJECT_ROOT%\NativeDumpTest.mingw.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*gcc*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*gcc*.mdmp )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2013" ( 7z a %PROJECT_ROOT%\NativeDumpTest.VS2013.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.mdmp %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2013*.pdb )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" ( 7z a %PROJECT_ROOT%\NativeDumpTest.VS2015.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.mdmp %PROJECT_ROOT%\Source\NativeDumpTest\bin\*VS2015*.pdb )
@@ -47,6 +47,7 @@ build_script:
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Release;Platform=x64 /verbosity:minimal /nologo )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Debug;Platform=Win32 /verbosity:minimal /nologo )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( dir %PROJECT_ROOT%\Source\Cpp17\bin\* )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( 7z a %PROJECT_ROOT%\Cpp17.VS2017.zip %PROJECT_ROOT%\Source\Cpp17\bin\*.exe %PROJECT_ROOT%\Source\Cpp17\bin\*.mdmp %PROJECT_ROOT%\Source\Cpp17\bin\*.pdb )
   - ps: |-
         pushd $env:PROJECT_ROOT

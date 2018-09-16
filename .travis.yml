@@ -1,6 +1,6 @@
 env:
   global:
-    - secure: JnADJkNc3xePiRyNYz2n84Osf/ThWvOILOap2sgtC+387iTSQKXgobkpEYSK9YQqLRxmRN2fkZQ3JA4d/k3z7p6WqHPGZTcBnPdIPLvr6L3IMS7W4+FRzD3bT/zNIcyQ371H3Chtd26QCqIrDsVdfSGdqV5G1Y/Vv0MJd2kNF1EFqmwjEJWs/6q96lwvMuiPFBdoqt4yZf1tb5zEm+9zVCpXc2J41+CYLr2UpXz+3zjLOuhUaZjcKfe4t/poDwaqm6w1PwvYp9jSG84VY48zJZLR1AwgZLuNT43t3FlJKnnsqijJpg7nsxsoGVDq9OrODSkCLuVNY984aiEYnb/Q8Pi6RHeFpQaWdnO+OZz9vLfda/Wj1/+rPV2DLrOStCn7+9Lmjczs5kKR4vn70xTi81e1MaXQ7mprqwigjt5Ns9eAgwiuCnCf/KuieEa7U55k0GXr9Uzr+C0e0rlvHGi+Km+Y4CJ2LN/mGEa2hoWUwzmVFPNHDtrof/a0KqgcP3dwHG/bLc3mmgKjaqfQQgQs1JFktg4+InGIFmk8EyC9KC2bNLJSgdEvKYP9pOfjWAw8qqNtgFL81bQ1s2REsuWJuDZKNRLx3KrJlecrVxf5Fh54R9SDp39AcfWtjpdMfwz7V5uTqcUzBU+oOwOYW76je20H26C3OCcnsRugWoQgGJc=
+    - secure: YWthcycNNxuL2tN3kEmKvA/w2yAAhVnWsXoP404VOm/NHIQsBHSSceRlDSM6lwcq+Bj7w6yJc4LKZs0ulW/mWdgkREPsOOWeg8oEmPny6I6OwxAvI4eIuGmVh7KyHgekKGUFgxj3NvM/AsErTmm2YaDzc+2asKU/S2i9FgPzgtkTH1PqzKeF3AcNpqEtWjFMUBGFT0DkytEzv6OQEQYK3NOHcwjYtQP60PwC6zYdGivdtdCeecZLTpvy4wjWPPtSUJrt2v0F/L5eERnPAeHJMy1waUAj3mlz3xkif+ixMU/UzoTDlFvyvBL4tq2BnhDhw1BldtgHIeHyoMtrgmJvJNTmZbepPC8zMI24v6A3jZ6xuDqRH2Y4eOnk3TT8VDrgOlwUq7B8cSm+A2F7Du/ocDaFjusVmeFIDSWdO+BTqO8f7Kc58ycSSbpO2nRY2XA6mKGmdpOMJkEvH7c6IEHubEHGF5s0ktih3Ldae1RMOi2kH6QOd7rwhld5dctmmsQDARHcOcwThZRdKap4X9qHeE7PaPEcAYqwkQzuODSeyY9CJUwVCo5V94SuJbXEOn7Syy7Fut91oQS3dsBszimBzTBiZvwNCoQTEVT67MHsL3N2S46nKMwa0OdIYSj4tsamF0gfrO0O9+uvNB8ZOLTELpeIp5oBs90+iO6IurwlJg0=
 matrix:
   include:
     - os: linux
@@ -39,7 +39,8 @@ matrix:
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x86.gcc.nortti.coredump' -ex 'quit'
         - gdb --batch Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.nortti -ex 'r' -ex 'generate-core-file Source/NativeDumpTest/bin/NativeDumpTest.linux.x64.clang.nortti.coredump' -ex 'quit'
         - ls Source/NativeDumpTest/bin/ -la
-        - for file in Source/NativeDumpTest/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest.1/1.0/a1/$name?override=1; done
+        - zip NativeDumpTest.linux.zip Source/NativeDumpTest/bin/*
+        - curl -T NativeDumpTest.linux.zip -uciupload:$ARTIFACTS_PASSWORD https://sharpdebug.jfrog.io/sharpdebug/generic-local/dumps_1/NativeDumpTest.linux.zip?override=1
         - mkdir Source/Cpp17/bin
         - g++-7 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x64.gcc -std=c++17 -g -static-libgcc -static-libstdc++
         - g++-7 -m32 Source/Cpp17/Cpp17.cpp -o Source/Cpp17/bin/cpp17.linux.x86.gcc -std=c++17 -g -static-libgcc -static-libstdc++
@@ -54,4 +55,5 @@ matrix:
         - gdb --batch Source/Cpp17/bin/cpp17.linux.x86.gcc.nortti -ex 'r' -ex 'generate-core-file Source/Cpp17/bin/cpp17.linux.x86.gcc.nortti.coredump' -ex 'quit'
         - gdb --batch Source/Cpp17/bin/cpp17.linux.x64.clang.nortti -ex 'r' -ex 'generate-core-file Source/Cpp17/bin/cpp17.linux.x64.clang.nortti.coredump' -ex 'quit'
         - ls Source/Cpp17/bin/ -la
-        - for file in Source/Cpp17/bin/*; do echo $file; name=$(basename $file); echo $name; curl -T $file -usouthpolenator:$BINTRAY_API_KEY https://api.bintray.com/content/southpolenator/WinDbgCs_dumps/NativeDumpTest.1/1.0/a1/$name?override=1; done
+        - zip Cpp17.linux.zip Source/Cpp17/bin/*
+        - curl -T Cpp17.linux.zip -uciupload:$ARTIFACTS_PASSWORD https://sharpdebug.jfrog.io/sharpdebug/generic-local/dumps_1/Cpp17.linux.zip?override=1

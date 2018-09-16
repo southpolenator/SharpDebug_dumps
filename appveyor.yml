@@ -18,8 +18,8 @@ build_script:
   - ps: |-
         if ($env:APPVEYOR_BUILD_WORKER_IMAGE -eq "Visual Studio 2013") {
             cd Source\ExceptionDumper32
-            dotnet restore
-            dotnet msbuild
+            dotnet.exe restore
+            dotnet.exe msbuild
             cd ..\..\
         }
   - cmd: IF NOT EXIST %DUMPER% ( SET DUMPER=%PROJECT_ROOT%\bin\ExceptionDumper.exe )
@@ -42,7 +42,8 @@ build_script:
   - cmd: SET PATH=%gccpath%;%ORIGINAL_PATH%
   - cmd: IF EXIST %gccpath% ( %gccpath%\g++ %PROJECT_ROOT%\Source\NativeDumpTest\NativeDumpTest.cpp -o %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -std=c++11 -g )
   - cmd: IF EXIST %gccpath% ( %DUMPER32% -a %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.exe -d %PROJECT_ROOT%\Source\NativeDumpTest\bin\NativeDumpTest.gcc.mdmp )
-  - cmd: IF EXIST %gccpath% ( 7z a %PROJECT_ROOT%\NativeDumpTest.mingw.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\* )
+  - cmd: IF EXIST %gccpath% ( dir %PROJECT_ROOT%\Source\NativeDumpTest\bin\* )
+  - cmd: IF EXIST %gccpath% ( 7z a %PROJECT_ROOT%\NativeDumpTest.mingw.zip %PROJECT_ROOT%\Source\NativeDumpTest\bin\*.exe %PROJECT_ROOT%\Source\NativeDumpTest\bin\*.mdmp )
   - ps: |-
         if ($env:APPVEYOR_BUILD_WORKER_IMAGE -eq "Visual Studio 2017") {
             msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Debug;Platform=x64 /verbosity:minimal /nologo
@@ -51,6 +52,7 @@ build_script:
             msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo
         }
   - ps: |-
+        pushd $env:PROJECT_ROOT
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
         $webClient = New-Object System.Net.WebClient;
         $webClient.Credentials = new-object System.Net.NetworkCredential($env:ARTIFACTS_USERNAME, $env:ARTIFACTS_PASSWORD);

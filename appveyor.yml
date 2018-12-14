@@ -6,7 +6,7 @@ image:
   - Visual Studio 2017
 
 environment:
-  DUMPS_VERSION: dumps_1
+  DUMPS_VERSION: dumps_2
   PROJECT_ROOT: C:\projects\windbgcs-dumps
   DUMPER: $(PROJECT_ROOT)\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
   DUMPER32: $(PROJECT_ROOT)\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe

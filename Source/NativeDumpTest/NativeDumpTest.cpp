@@ -183,6 +183,9 @@ NO_INLINE void TestArray()
     for (int i = 0; i < sizeof(testArray) / sizeof(testArray[0]); i++)
         testArray[i] = 0x12121212;
 
+    std::array<int, sizeof(testArray)/sizeof(testArray[0])> testStdArray;
+    std::copy(std::begin(testArray), std::end(testArray), testStdArray.begin());
+
     TestSharedWeakPointers();
 }
 

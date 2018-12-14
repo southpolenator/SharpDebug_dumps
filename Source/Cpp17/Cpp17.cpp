@@ -12,12 +12,15 @@
 #endif
 
 #include <any>
-#include <variant>
-#include <string>
-#include <vector>
+#include <array>
+#include <filesystem>
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
+#include <string>
+#include <variant>
+#include <vector>
 
 using namespace std;
 
@@ -42,6 +45,37 @@ NO_INLINE void CauseDump()
     *a = 4;
 }
 
+NO_INLINE void TestOptional()
+{
+    std::optional<int> i = 5;
+    std::optional<int> emptyInt;
+    std::optional<bool> bFalse = false;
+    std::optional<bool> bTrue = true;
+    std::optional<bool> bEmpty;
+
+    CauseDump();
+}
+
+NO_INLINE void TestPath()
+{
+    std::filesystem::path root = "/my/test";
+    std::filesystem::path child = root / "child";
+    std::filesystem::path wroot = L"/my/test";
+    std::filesystem::path wchild = root / L"child";
+
+    TestOptional();
+}
+
+NO_INLINE void TestBoolContainers()
+{
+    bool carray[] = { true, true, false, false, true, false, true, true, false };
+    std::array<bool, sizeof(carray)/sizeof(carray[0])> array;
+    std::copy(std::begin(carray), std::end(carray), std::begin(array));
+    std::vector<bool> vector(array.begin(), array.end());
+
+    TestPath();
+}
+
 NO_INLINE void TestAny()
 {
     std::any a_int = 1729;
@@ -55,7 +89,7 @@ NO_INLINE void TestAny()
     std::any a_shared = std::make_shared<std::any>(a_pair);
     std::any a_empty;
 
-    CauseDump();
+    TestBoolContainers();
 }
 
 NO_INLINE void TestVariant()

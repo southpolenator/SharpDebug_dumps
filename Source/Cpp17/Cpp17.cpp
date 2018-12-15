@@ -58,6 +58,7 @@ NO_INLINE void TestOptional()
 
 NO_INLINE void TestPath()
 {
+    auto pathSeparator = std::filesystem::path::preferred_separator;
     std::filesystem::path root = "/my/test";
     std::filesystem::path child = root / "child";
     std::filesystem::path wroot = L"/my/test";

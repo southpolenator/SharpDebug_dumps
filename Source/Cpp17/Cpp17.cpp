@@ -69,7 +69,10 @@ NO_INLINE void TestPath()
 
 NO_INLINE void TestBoolContainers()
 {
-    bool carray[] = { true, true, false, false, true, false, true, true, false };
+    bool carray[100] = { false };
+    for (int i = 0, j = 1; i < sizeof(carray)/sizeof(carray[0]); i += j, j++)
+        for (int k = 0; k < j && i < sizeof(carray) / sizeof(carray[0]); k++, i++)
+            carray[i] = true;
     std::array<bool, sizeof(carray)/sizeof(carray[0])> array;
     std::copy(std::begin(carray), std::end(carray), std::begin(array));
     std::vector<bool> vector(array.begin(), array.end());

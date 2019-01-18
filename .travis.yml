@@ -23,6 +23,9 @@ matrix:
             - gdb
             - libc++-7-dev
             - libc++abi-7-dev
+      homebrew:
+        casks:
+          - dotnet-sdk
       script:
         - echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
         - g++-8 -v

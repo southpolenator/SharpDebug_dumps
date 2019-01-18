@@ -6,7 +6,7 @@ image:
   - Visual Studio 2017
 
 environment:
-  DUMPS_VERSION: dumps_2
+  DUMPS_VERSION: dumps_3
   PROJECT_ROOT: C:\projects\windbgcs-dumps
   DUMPER: $(PROJECT_ROOT)\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
   DUMPER32: $(PROJECT_ROOT)\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
@@ -50,6 +50,7 @@ build_script:
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( msbuild Source\Cpp17\Cpp17.vcxproj /p:Configuration=Release;Platform=Win32 /verbosity:minimal /nologo )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( dir %PROJECT_ROOT%\Source\Cpp17\bin\* )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( 7z a %PROJECT_ROOT%\Cpp17.VS2017.zip %PROJECT_ROOT%\Source\Cpp17\bin\*.exe %PROJECT_ROOT%\Source\Cpp17\bin\*.mdmp %PROJECT_ROOT%\Source\Cpp17\bin\*.pdb )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( dotnet build %PROJECT_ROOT%\Source\Clr\Clr.sln )
   - ps: |-
         pushd $env:PROJECT_ROOT
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;

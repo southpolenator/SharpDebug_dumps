@@ -1,7 +1,7 @@
 env:
   global:
     - secure: YWthcycNNxuL2tN3kEmKvA/w2yAAhVnWsXoP404VOm/NHIQsBHSSceRlDSM6lwcq+Bj7w6yJc4LKZs0ulW/mWdgkREPsOOWeg8oEmPny6I6OwxAvI4eIuGmVh7KyHgekKGUFgxj3NvM/AsErTmm2YaDzc+2asKU/S2i9FgPzgtkTH1PqzKeF3AcNpqEtWjFMUBGFT0DkytEzv6OQEQYK3NOHcwjYtQP60PwC6zYdGivdtdCeecZLTpvy4wjWPPtSUJrt2v0F/L5eERnPAeHJMy1waUAj3mlz3xkif+ixMU/UzoTDlFvyvBL4tq2BnhDhw1BldtgHIeHyoMtrgmJvJNTmZbepPC8zMI24v6A3jZ6xuDqRH2Y4eOnk3TT8VDrgOlwUq7B8cSm+A2F7Du/ocDaFjusVmeFIDSWdO+BTqO8f7Kc58ycSSbpO2nRY2XA6mKGmdpOMJkEvH7c6IEHubEHGF5s0ktih3Ldae1RMOi2kH6QOd7rwhld5dctmmsQDARHcOcwThZRdKap4X9qHeE7PaPEcAYqwkQzuODSeyY9CJUwVCo5V94SuJbXEOn7Syy7Fut91oQS3dsBszimBzTBiZvwNCoQTEVT67MHsL3N2S46nKMwa0OdIYSj4tsamF0gfrO0O9+uvNB8ZOLTELpeIp5oBs90+iO6IurwlJg0=
-    - DUMPS_VERSION=dumps_2
+    - DUMPS_VERSION=dumps_3
 matrix:
   include:
     - os: linux
@@ -59,3 +59,4 @@ matrix:
         - ls Source/Cpp17/bin/ -la
         - cd Source/Cpp17/bin;zip Cpp17.linux.zip * -9;cd ../../../
         - curl -T Source/Cpp17/bin/Cpp17.linux.zip -uciupload:$ARTIFACTS_PASSWORD https://sharpdebug.jfrog.io/sharpdebug/generic-local/$DUMPS_VERSION/Cpp17.linux.zip?override=1
+        - cd Source/Clr; dotnet build; cd ../../

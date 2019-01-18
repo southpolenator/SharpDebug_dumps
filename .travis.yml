@@ -23,9 +23,10 @@ matrix:
             - gdb
             - libc++-7-dev
             - libc++abi-7-dev
-      homebrew:
-        casks:
-          - dotnet-sdk
+      before_install:
+        - curl -L --create-dirs https://dot.net/v1/dotnet-install.sh -o ./dotnet-install.sh
+        - find ./ -name "*.sh" -exec chmod +x {} \;
+        - sudo bash ./dotnet-install.sh
       script:
         - echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
         - g++-8 -v

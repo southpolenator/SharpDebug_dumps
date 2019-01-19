@@ -69,4 +69,4 @@ matrix:
         - cp Source/Clr/NestedException/bin/Debug/netcoreapp2.0/NestedException.dll Source/Clr/bin/
         - cp Source/Clr/SharedLibrary/bin/Debug/netstandard2.0/SharedLibrary.dll Source/Clr/bin/
         - cp Source/Clr/Types/bin/Debug/netcoreapp2.0/Types.dll Source/Clr/bin/
-        - gdb --batch 'dotnet Source/Clr/bin/AppDomains.dll' -ex 'r' -ex 'generate-core-file Source/Clr/bin/AppDomains.linux.coredump' -ex 'quit'
+        - gdb --batch 'dotnet' -ex 'r Source/Clr/bin/AppDomains.dll' -ex 'generate-core-file Source/Clr/bin/AppDomains.linux.coredump' -ex 'quit'

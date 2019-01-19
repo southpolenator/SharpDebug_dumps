@@ -63,7 +63,7 @@ matrix:
         - cd Source/Cpp17/bin;zip Cpp17.linux.zip * -9;cd ../../../
         - curl -T Source/Cpp17/bin/Cpp17.linux.zip -uciupload:$ARTIFACTS_PASSWORD https://sharpdebug.jfrog.io/sharpdebug/generic-local/$DUMPS_VERSION/Cpp17.linux.zip?override=1
         - cd Source/Clr; dotnet build; cd ../../
-        - md Source/Clr/bin
+        - mkdir Source/Clr/bin
         - cp Source/Clr/AppDomains/bin/Debug/netcoreapp2.0/AppDomains.dll Source/Clr/bin/
         - cp Source/Clr/LocalVariables/bin/Debug/netcoreapp2.0/LocalVariables.dll Source/Clr/bin/
         - cp Source/Clr/NestedException/bin/Debug/netcoreapp2.0/NestedException.dll Source/Clr/bin/

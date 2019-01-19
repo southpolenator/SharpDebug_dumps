@@ -10,7 +10,7 @@ environment:
   PROJECT_ROOT: C:\projects\windbgcs-dumps
   DUMPER: $(PROJECT_ROOT)\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
   DUMPER32: $(PROJECT_ROOT)\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
-  CORFLAGS: corflags
+  CORFLAGS: "C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.1 Tools\x64\CorFlags.exe"
   ARTIFACTS_USERNAME: ciupload
   ARTIFACTS_PASSWORD:
     secure: oTegwrEw7mLsNdGljbzQonwCm0UupJ7oRK/jI3Mosrk=

@@ -51,6 +51,18 @@ build_script:
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( dir %PROJECT_ROOT%\Source\Cpp17\bin\* )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( 7z a %PROJECT_ROOT%\Cpp17.VS2017.zip %PROJECT_ROOT%\Source\Cpp17\bin\*.exe %PROJECT_ROOT%\Source\Cpp17\bin\*.mdmp %PROJECT_ROOT%\Source\Cpp17\bin\*.pdb )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( dotnet build %PROJECT_ROOT%\Source\Clr\Clr.sln )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( md %PROJECT_ROOT%\Source\Clr\Core )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\AppDomains\bin\Debug\netcoreapp2.0\AppDomains.* %PROJECT_ROOT%\Source\Clr\Core )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\LocalVariables\bin\Debug\netcoreapp2.0\LocalVariables.* %PROJECT_ROOT%\Source\Clr\Core )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\NestedException\bin\Debug\netcoreapp2.0\NestedException.* %PROJECT_ROOT%\Source\Clr\Core )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\SharedLibrary\bin\Debug\netcoreapp2.0\SharedLibrary.* %PROJECT_ROOT%\Source\Clr\Core )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\Types\bin\Debug\netcoreapp2.0\Types.* %PROJECT_ROOT%\Source\Clr\Core )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %DUMPER% -a "dotnet %PROJECT_ROOT%\Source\Clr\AppDomains\bin\Debug\netcoreapp2.0\AppDomains.dll" -d %PROJECT_ROOT%\Source\Clr\Core\AppDomains.Core.mdmp )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %DUMPER% -a "dotnet %PROJECT_ROOT%\Source\Clr\LocalVariables\bin\Debug\netcoreapp2.0\LocalVariables.dll" -d %PROJECT_ROOT%\Source\Clr\Core\LocalVariables.Core.mdmp )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %DUMPER% -a "dotnet %PROJECT_ROOT%\Source\Clr\NestedException\bin\Debug\netcoreapp2.0\NestedException.dll" -d %PROJECT_ROOT%\Source\Clr\Core\NestedException.Core.mdmp )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %DUMPER% -a "dotnet %PROJECT_ROOT%\Source\Clr\Types\bin\Debug\netcoreapp2.0\Types.dll" -d %PROJECT_ROOT%\Source\Clr\Core\Types.Core.mdmp )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( 7z a %PROJECT_ROOT%\Clr.Windows.Core.zip %PROJECT_ROOT%\Source\Clr\Core\*.* )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( md %PROJECT_ROOT%\Source\Clr\Framework )
   - ps: |-
         pushd $env:PROJECT_ROOT
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
@@ -78,6 +90,11 @@ build_script:
         }
         if (Test-Path Cpp17.VS2017.zip) {
             $filename = "Cpp17.VS2017.zip";
+            $url = "https://sharpdebug.jfrog.io/sharpdebug/generic-local/${env:DUMPS_VERSION}/${filename}?override=1";
+            $webClient.UploadData($url, "PUT", [System.IO.File]::ReadAllBytes("${env:PROJECT_ROOT}\$filename"));
+        }
+        if (Test-Path Clr.Windows.Core.zip) {
+            $filename = "Clr.Windows.Core.zip";
             $url = "https://sharpdebug.jfrog.io/sharpdebug/generic-local/${env:DUMPS_VERSION}/${filename}?override=1";
             $webClient.UploadData($url, "PUT", [System.IO.File]::ReadAllBytes("${env:PROJECT_ROOT}\$filename"));
         }

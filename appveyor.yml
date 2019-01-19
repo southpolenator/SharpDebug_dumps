@@ -10,7 +10,7 @@ environment:
   PROJECT_ROOT: C:\projects\windbgcs-dumps
   DUMPER: $(PROJECT_ROOT)\Source\ExceptionDumper\bin\Debug\net461\ExceptionDumper.exe
   DUMPER32: $(PROJECT_ROOT)\Source\ExceptionDumper32\bin\Debug\net461\ExceptionDumper32.exe
-  CORFLAGS: "C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.1 Tools\x64\CorFlags.exe"
+  CORFLAGS: C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.1 Tools\x64\CorFlags.exe
   ARTIFACTS_USERNAME: ciupload
   ARTIFACTS_PASSWORD:
     secure: oTegwrEw7mLsNdGljbzQonwCm0UupJ7oRK/jI3Mosrk=
@@ -81,10 +81,10 @@ build_script:
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( set COMPlus_BuildFlavor= )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( 7z a %PROJECT_ROOT%\Clr.Windows.x64.zip %PROJECT_ROOT%\Source\Clr\Framework.x64\*.* )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( md %PROJECT_ROOT%\Source\Clr\Framework.x86 )
-  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %CORFLAGS% %PROJECT_ROOT%\Source\Clr\AppDomains\bin\Debug\net461\AppDomains.exe /32Bit+ )
-  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %CORFLAGS% %PROJECT_ROOT%\Source\Clr\LocalVariables\bin\Debug\net461\LocalVariables.exe /32Bit+ )
-  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %CORFLAGS% %PROJECT_ROOT%\Source\Clr\NestedException\bin\Debug\net461\NestedException.exe /32Bit+ )
-  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( %CORFLAGS% %PROJECT_ROOT%\Source\Clr\Types\bin\Debug\net461\Types.exe /32Bit+ )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( "%CORFLAGS%" %PROJECT_ROOT%\Source\Clr\AppDomains\bin\Debug\net461\AppDomains.exe /32Bit+ )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( "%CORFLAGS%" %PROJECT_ROOT%\Source\Clr\LocalVariables\bin\Debug\net461\LocalVariables.exe /32Bit+ )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( "%CORFLAGS%" %PROJECT_ROOT%\Source\Clr\NestedException\bin\Debug\net461\NestedException.exe /32Bit+ )
+  - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( "%CORFLAGS%" %PROJECT_ROOT%\Source\Clr\Types\bin\Debug\net461\Types.exe /32Bit+ )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\AppDomains\bin\Debug\net461\AppDomains.* %PROJECT_ROOT%\Source\Clr\Framework.x86 )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\LocalVariables\bin\Debug\net461\LocalVariables.* %PROJECT_ROOT%\Source\Clr\Framework.x86 )
   - cmd: IF "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" ( copy %PROJECT_ROOT%\Source\Clr\NestedException\bin\Debug\net461\NestedException.* %PROJECT_ROOT%\Source\Clr\Framework.x86 )

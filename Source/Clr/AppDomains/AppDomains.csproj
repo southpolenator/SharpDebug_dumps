@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../SharedLibrary/SharedLibrary.csproj" />
+    <ProjectReference Include="../NestedException/NestedException.csproj" />
   </ItemGroup>
 
 </Project>

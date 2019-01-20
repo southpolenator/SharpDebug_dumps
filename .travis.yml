@@ -70,13 +70,13 @@ matrix:
         - cp Source/Clr/SharedLibrary/bin/Debug/netstandard2.0/SharedLibrary.* Source/Clr/bin/
         - cp Source/Clr/Types/bin/Debug/netcoreapp2.0/Types.* Source/Clr/bin/
         - export COMPlus_DbgEnableMiniDump=1
-        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/AppDomains.linux.coredump
+        - export COMPlus_DbgMiniDumpName=$PWD/Source/Clr/bin/AppDomains.linux.coredump
         - dotnet Source/Clr/AppDomains/bin/Debug/netcoreapp2.0/AppDomains.dll || echo 0
-        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/LocalVariables.linux.coredump
+        - export COMPlus_DbgMiniDumpName=$PWD/Source/Clr/bin/LocalVariables.linux.coredump
         - dotnet Source/Clr/LocalVariables/bin/Debug/netcoreapp2.0/LocalVariables.dll || echo 0
-        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/NestedException.linux.coredump
+        - export COMPlus_DbgMiniDumpName=$PWD/Source/Clr/bin/NestedException.linux.coredump
         - dotnet Source/Clr/NestedException/bin/Debug/netcoreapp2.0/NestedException.dll || echo 0
-        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/Types.linux.coredump
+        - export COMPlus_DbgMiniDumpName=$PWD/Source/Clr/bin/Types.linux.coredump
         - dotnet Source/Clr/Types/bin/Debug/netcoreapp2.0/Types.dll || echo 0
         - cd Source/Clr/bin;zip Clr.linux.zip * -9;cd ../../../
         - curl -T Source/Clr/bin/Clr.linux.zip -uciupload:$ARTIFACTS_PASSWORD https://sharpdebug.jfrog.io/sharpdebug/generic-local/$DUMPS_VERSION/Clr.linux.zip?override=1

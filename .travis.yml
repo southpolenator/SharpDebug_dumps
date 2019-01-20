@@ -69,9 +69,14 @@ matrix:
         - cp Source/Clr/NestedException/bin/Debug/netcoreapp2.0/NestedException.* Source/Clr/bin/
         - cp Source/Clr/SharedLibrary/bin/Debug/netstandard2.0/SharedLibrary.* Source/Clr/bin/
         - cp Source/Clr/Types/bin/Debug/netcoreapp2.0/Types.* Source/Clr/bin/
-        - gdb --batch 'dotnet' -ex 'r Source/Clr/AppDomains/bin/Debug/netcoreapp2.0/AppDomains.dll' -ex 'generate-core-file Source/Clr/bin/AppDomains.linux.coredump' -ex 'quit'
-        - gdb --batch 'dotnet' -ex 'r Source/Clr/LocalVariables/bin/Debug/netcoreapp2.0/LocalVariables.dll' -ex 'generate-core-file Source/Clr/bin/LocalVariables.linux.coredump' -ex 'quit'
-        - gdb --batch 'dotnet' -ex 'r Source/Clr/NestedException/bin/Debug/netcoreapp2.0/NestedException.dll' -ex 'generate-core-file Source/Clr/bin/NestedException.linux.coredump' -ex 'quit'
-        - gdb --batch 'dotnet' -ex 'r Source/Clr/Types/bin/Debug/netcoreapp2.0/Types.dll' -ex 'generate-core-file Source/Clr/bin/Types.linux.coredump' -ex 'quit'
+        - export COMPlus_DbgEnableMiniDump=1
+        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/AppDomains.linux.coredump
+        - dotnet Source/Clr/AppDomains/bin/Debug/netcoreapp2.0/AppDomains.dll
+        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/LocalVariables.linux.coredump
+        - dotnet Source/Clr/LocalVariables/bin/Debug/netcoreapp2.0/LocalVariables.dll
+        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/NestedException.linux.coredump
+        - dotnet Source/Clr/NestedException/bin/Debug/netcoreapp2.0/NestedException.dll
+        - export COMPlus_DbgMiniDumpName=/home/travis/build/southpolenator/WinDbgCs_dumps/Source/Clr/bin/Types.linux.coredump
+        - dotnet Source/Clr/Types/bin/Debug/netcoreapp2.0/Types.dll
         - cd Source/Clr/bin;zip Clr.linux.zip * -9;cd ../../../
         - curl -T Source/Clr/bin/Clr.linux.zip -uciupload:$ARTIFACTS_PASSWORD https://sharpdebug.jfrog.io/sharpdebug/generic-local/$DUMPS_VERSION/Clr.linux.zip?override=1
